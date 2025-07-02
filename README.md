@@ -5,11 +5,15 @@ Made for multi-backend.
 
 ## Table of Contents
 
+- [Security Considerations](#security-considerations)
 - [Features](#features)
 - [Usage Example](#usage-example)
 - [Architecture](#architecture)
 - [Interfaces & Extensibility](#interfaces--extensibility)
 - [Contributing](#contributing)
+
+## Security Considerations
+Use these libraries with caution, as overall security depends not only on the backend implementation but also on how you exchange and protect cryptographic keys.
 
 ## Features
 Here is the list of available backend implementations :  
