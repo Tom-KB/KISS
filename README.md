@@ -34,7 +34,7 @@ You can use these in you program and choose one of the implementation.
 ### Example with the LibSodium implementation
 ```cpp
 unique_ptr<KeyExchangeInterface> kX = make_unique<KeyExchangeSodium>();
-unique_ptr<SymmetricCipherInterface> symCipher = make_unique<SymmetricCipherSodium>(keClient->getSharedSecret());
+unique_ptr<SymmetricCipherInterface> symCipher = make_unique<SymmetricCipherSodium>(kX->getSharedSecret());
 ```
 This let you the opportunity to change the backend later.
 
