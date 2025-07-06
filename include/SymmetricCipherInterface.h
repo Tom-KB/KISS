@@ -29,7 +29,7 @@ public:
 
 protected:
     // Shared Secret use as the symmetric key for the cipher.
-    const const string& sharedSecret;
+    const string& sharedSecret;
 };
 
 #endif //_SYMMETRICCIPHERINTERFACE_H
