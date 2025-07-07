@@ -1,10 +1,7 @@
 #ifndef _KEYEXCHANGEINTERFACE_H
 #define _KEYEXCHANGEINTERFACE_H
 
-using namespace std;
-
 #include <string>
-
 
 class KeyExchangeInterface {
 public: 
@@ -18,22 +15,22 @@ public:
     /**
      * This method return the public key used by the ECDH
      */
-    virtual string getPublicKey() = 0;
+    virtual std::string getPublicKey() = 0;
     
     /**
      * This method compute the shared secret used for the symmetric cipher, based on the peer public key and the client private key.
      * @param const string& peerPK
      */
-    virtual void computeSharedSecret(const string& peerPK) = 0;
+    virtual void computeSharedSecret(const std::string& peerPK) = 0;
     
     /**
      * This method return the shared secret used for the symmetric cipher
      */
-    virtual const string& getSharedSecret() = 0;
+    virtual const std::string& getSharedSecret() = 0;
 
 protected:
     // Shared secret obtain via the ECDH.
-    string sharedSecret;
+    std::string sharedSecret;
 };
 
 #endif //_KEYEXCHANGEINTERFACE_H

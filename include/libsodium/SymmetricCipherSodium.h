@@ -15,19 +15,19 @@ public:
     /**
      * @param const string& sharedSecret
      */
-    SymmetricCipherSodium(const string& sharedSecret);
+    SymmetricCipherSodium(const std::string& sharedSecret);
 
     /**
      * This method is used to encrypt a string based on your desired algorithm and with the shared secret.
      * @param const string& message
      */
-    string encrypt(const string& message);
+    std::string encrypt(const std::string& message);
 
     /**
      * This method return a decrypt string based on your desired algorithm and the shared secret.
      * @param const string& cipher
      */
-    string decrypt(const string& cipher);
+    std::string decrypt(const std::string& cipher);
 
 protected:
     unsigned char RXHeader[crypto_secretstream_xchacha20poly1305_HEADERBYTES], 

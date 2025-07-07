@@ -23,18 +23,18 @@ public:
     /**
      * This method return the public key used by the ECDH
      */
-    string getPublicKey();
+    std::string getPublicKey();
 
     /**
      * This method compute the shared secret used for the symmetric cipher, based on the peer public key and the client private key.
      * @param const string& peerPK
      */
-    void computeSharedSecret(const string& peerPK);
+    void computeSharedSecret(const std::string& peerPK);
 
     /**
      * This method return the shared secret used for the symmetric cipher
      */
-    const string& getSharedSecret();
+    const std::string& getSharedSecret();
 
 protected:
     KE_SIDE side;

@@ -1,5 +1,7 @@
 #include <KISS.h>
 
+using namespace std;
+
 KeyExchangeSodium::KeyExchangeSodium(KE_SIDE side) : side(side), rx{}, tx{}, peerPublicKey{}, KeyExchangeInterface() {
 	crypto_kx_keypair(publicKey, secretKey);
 }
