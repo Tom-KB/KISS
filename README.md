@@ -13,7 +13,7 @@ Made for multi-backend.
 - [Contributing](#contributing)
 
 ## Security Considerations
-Use these libraries with caution, as overall security depends not only on the backend implementation but also on how you exchange and protect cryptographic keys.
+Use this library with caution, as overall security depends not only on the backend implementation but also on how you exchange and protect cryptographic keys.
 
 ## Features
 Here is the list of available backend implementations :  
