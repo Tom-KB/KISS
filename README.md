@@ -1,4 +1,7 @@
-# KISS 💋
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/43d92a20-2d49-4f40-8598-19bdff2d1868" alt="KISS" />
+</p>
+
 
 "Keep It Simple, Secure" a small interface for key exchange and symmetric ciphering.
 Made for multi-backend.
