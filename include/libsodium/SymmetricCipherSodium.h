@@ -13,19 +13,19 @@ public:
     ~SymmetricCipherSodium();
 
     /**
-     * @param const string& sharedSecret
+     * @param sharedSecret
      */
     SymmetricCipherSodium(const std::string& sharedSecret);
 
     /**
      * This method is used to encrypt a string based on your desired algorithm and with the shared secret.
-     * @param const string& message
+     * @param message
      */
     std::string encrypt(const std::string& message);
 
     /**
      * This method return a decrypt string based on your desired algorithm and the shared secret.
-     * @param const string& cipher
+     * @param cipher
      */
     std::string decrypt(const std::string& cipher);
 

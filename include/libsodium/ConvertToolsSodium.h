@@ -5,11 +5,11 @@
 #include <stdexcept>
 #include <string>
 
-/*
-* Function to convert any unsigned char keys into a string in an hex format
-* @param unsigned char* array
-* @param size_t length
-*/
+/**
+ * Function to convert any unsigned char keys into a string in an hex format
+ * @param array
+ * @param length
+ */
 inline std::string toString(unsigned char* array, size_t length) {
 	std::string res;
 
@@ -19,11 +19,11 @@ inline std::string toString(unsigned char* array, size_t length) {
 	return res;
 }
 
-/*
-* Function to convert back a string into an unsigned char array
-* @param const string& str
-* @param size_t length
-*/
+/**
+ * Function to convert back a string into an unsigned char array
+ * @param str
+ * @param length
+ */
 inline unsigned char* toUnsignedCharArray(const std::string& str, size_t length) {
 	unsigned char* arr = new unsigned char[length];
 	size_t arr_len = 0;

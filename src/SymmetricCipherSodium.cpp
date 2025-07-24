@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 SymmetricCipherSodium::SymmetricCipherSodium() : RXHeader{}, TXHeader{}, rx{}, tx{}, statePull{}, statePush{} {
 
 }

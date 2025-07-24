@@ -19,7 +19,7 @@ public:
     
     /**
      * This method compute the shared secret used for the symmetric cipher, based on the peer public key and the client private key.
-     * @param const string& peerPK
+     * @param peerPK
      */
     virtual void computeSharedSecret(const std::string& peerPK) = 0;
     
