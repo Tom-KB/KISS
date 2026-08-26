@@ -53,5 +53,39 @@ int main() {
 
 	assert(uncipherString2 == message2); // Equivalence of message after decryption
 
+	/*
+		Sizes around the chunk boundary. Short messages fit in a single chunk and
+		hide the way chunks are cut, so a mistake there only shows up past
+		chunkSize - abytesSize bytes : exactly the sizes nothing used to cover.
+	*/
+	const size_t sizes[] = {
+		1,
+		chunkSize - abytesSize - 1,
+		chunkSize - abytesSize,
+		chunkSize - abytesSize + 1,   // first size that needs a correctly cut chunk
+		chunkSize - 1,
+		chunkSize,
+		chunkSize + 1,
+		2 * chunkSize,
+		2 * chunkSize + 1,
+		10 * chunkSize + 123
+	};
+
+	for (size_t s = 0; s < sizeof(sizes) / sizeof(sizes[0]); s++) {
+		string big(sizes[s], '\0');
+		for (size_t i = 0; i < big.size(); i++) big[i] = static_cast<char>('A' + (i % 26));
+
+		string cipher = symCipherClient->encrypt(big);
+		string clear = symCipherServer->decrypt(cipher);
+
+		printf("size %6zu -> cipher %6zu -> clear %6zu %s\n",
+			big.size(), cipher.size(), clear.size(),
+			(clear == big) ? "OK" : "FAILED");
+
+		assert(clear == big); // Round trip has to be exact whatever the size
+	}
+
+	printf("All symmetric ciphering tests passed.\n");
+
 	return 0;
 }
