@@ -2,6 +2,7 @@
 #include <SymmetricCipherInterface.h>
 #include "ConvertToolsSodium.h"
 #include <algorithm>
+#include <cstring>
 
 #define chunkSize 1500 // Arbitrary size for a chunk
 #define headerSize crypto_secretstream_xchacha20poly1305_HEADERBYTES
