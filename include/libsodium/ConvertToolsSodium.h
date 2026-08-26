@@ -20,18 +20,20 @@ inline std::string toString(unsigned char* array, size_t length) {
 }
 
 /**
- * Function to convert back a string into an unsigned char array
+ * Function to convert back a hex string into a caller provided buffer
+ * @param out Buffer of at least length bytes, left untouched if the conversion fails
  * @param str
  * @param length
+ * @details Writes straight into the caller's buffer rather than allocating one.
+ * Every caller here converts key material, and a returned buffer meant it lived on
+ * the heap until someone remembered to delete it - which is both a leak and secret
+ * bytes left lying in freed memory.
  */
-inline unsigned char* toUnsignedCharArray(const std::string& str, size_t length) {
-	unsigned char* arr = new unsigned char[length];
-	size_t arr_len = 0;
+inline void toUnsignedCharArray(unsigned char* out, const std::string& str, size_t length) {
+	size_t out_len = 0;
 
-	if (sodium_hex2bin(arr, length, str.c_str(), str.size(), nullptr, &arr_len, nullptr) != 0 || arr_len != length) {
-		delete[] arr;
+	if (sodium_hex2bin(out, length, str.c_str(), str.size(), nullptr, &out_len, nullptr) != 0 || out_len != length) {
+		sodium_memzero(out, length); // Never leave a half converted key behind
 		throw std::runtime_error("Conversion error: invalid hex string or incorrect length");
 	}
-
-	return arr;
 }
