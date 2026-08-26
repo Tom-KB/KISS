@@ -7,7 +7,9 @@ SymmetricCipherSodium::SymmetricCipherSodium() : RXHeader{}, TXHeader{}, rx{}, t
 }
 
 SymmetricCipherSodium::~SymmetricCipherSodium() {
-
+	// Do not leave the session keys in freed memory
+	sodium_memzero(rx, crypto_kx_SESSIONKEYBYTES);
+	sodium_memzero(tx, crypto_kx_SESSIONKEYBYTES);
 }
 
 SymmetricCipherSodium::SymmetricCipherSodium(const string& sharedSecret) : RXHeader{}, TXHeader{}, rx{}, tx{}, statePull{}, statePush{} {
@@ -16,8 +18,8 @@ SymmetricCipherSodium::SymmetricCipherSodium(const string& sharedSecret) : RXHea
 	const string rxStr = sharedSecret.substr(0, half);
 	const string txStr = sharedSecret.substr(half, half);
 
-	std::memcpy(rx, toUnsignedCharArray(rxStr, crypto_kx_SESSIONKEYBYTES), crypto_kx_SESSIONKEYBYTES);
-	std::memcpy(tx, toUnsignedCharArray(txStr, crypto_kx_SESSIONKEYBYTES), crypto_kx_SESSIONKEYBYTES);
+	toUnsignedCharArray(rx, rxStr, crypto_kx_SESSIONKEYBYTES);
+	toUnsignedCharArray(tx, txStr, crypto_kx_SESSIONKEYBYTES);
 }
 
 string SymmetricCipherSodium::encrypt(const string& message) {

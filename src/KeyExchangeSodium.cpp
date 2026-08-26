@@ -58,7 +58,10 @@ KeyExchangeSodium::KeyExchangeSodium(const string& publicKeyFile, const string& 
 }
 
 KeyExchangeSodium::~KeyExchangeSodium() {
-
+	// Do not leave the private key and the session keys in freed memory
+	sodium_memzero(secretKey, crypto_kx_SECRETKEYBYTES);
+	sodium_memzero(rx, crypto_kx_SESSIONKEYBYTES);
+	sodium_memzero(tx, crypto_kx_SESSIONKEYBYTES);
 }
 
 string KeyExchangeSodium::getPublicKey() {
@@ -66,9 +69,7 @@ string KeyExchangeSodium::getPublicKey() {
 }
 
 void KeyExchangeSodium::computeSharedSecret(const string& peerPK) {
-	unsigned char* temp = toUnsignedCharArray(peerPK, crypto_kx_PUBLICKEYBYTES);
-	memcpy_s(peerPublicKey, crypto_kx_PUBLICKEYBYTES, temp, crypto_kx_PUBLICKEYBYTES);
-	delete[] temp; 
+	toUnsignedCharArray(peerPublicKey, peerPK, crypto_kx_PUBLICKEYBYTES);
 	// From here the peerPublicKey contain the right information to compute the shared secret
 
 	switch (side) {
