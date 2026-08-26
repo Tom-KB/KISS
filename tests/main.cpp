@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include <iostream>
 #include <memory>
+#include <string>
 #include <assert.h>
+
+// The headers stopped pulling std in, so this file has to say it itself
+using namespace std;
 
 // Usage example for the LibSodium backend
 
